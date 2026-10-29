@@ -76,17 +76,17 @@
         const files = (s.file_ids || []).map(fileById).filter(Boolean);
         return `
         <article class="s-card" id="s-${s.no}">
-          <div class="s-top">
-            <div class="s-no">${s.no}</div>
-            <div>
-              <h3 class="s-title">${highlight(s.title, query)}</h3>
-              <div class="meta">
-                <span class="chip">${I.clock} ${esc(s.time_range || "")} · ${s.duration} menit</span>
-                <span class="chip">${I.slide} Slide ${esc(s.slides || "-")}</span>
-                ${s.prompts.length ? `<span class="chip">${I.chat} ${s.prompts.length} prompt</span>` : ""}
-              </div>
+                  <div class="s-top">
+          <div class="s-no">${s.no}</div>
+          <div>
+            <h3 class="s-title">${highlight(s.title, query)}</h3>
+            ${s.description ? `<p class="s-desc">${highlight(s.description, query)}</p>` : ""}
+            <div class="meta">
+              ${s.prompts.length ? `<span class="chip">${I.chat} ${s.prompts.length} prompt</span>` : ""}
+              ${(s.file_ids || []).length ? `<span class="chip">${I.down} ${(s.file_ids || []).length} file latihan</span>` : ""}
             </div>
           </div>
+        </div>
           ${s.activities?.length ? `<ul class="acts">${s.activities.map((a) => `<li>${esc(a)}</li>`).join("")}</ul>` : ""}
           ${files.length ? `<div class="s-files">${files.map((f) =>
             `<a class="file-btn" href="${f.path}" download data-fid="${f.id}">${I.down} ${esc(f.name)}.docx</a>`).join("")}</div>` : ""}

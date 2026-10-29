@@ -21,7 +21,7 @@
     if (sb) {
       try {
         const [{ data: s, error: e1 }, { data: f, error: e2 }] = await Promise.all([
-          sb.from("sessions").select("id,no,title,time_range,duration,slides,activities,sort,prompts(id,label,prompt,sort),session_files(file_id)").order("sort"),
+         sb.from("sessions").select("id,no,title,description,sort,prompts(id,label,prompt,sort),session_files(file_id)").order("sort"),
           sb.from("files").select("id,code,name,path,description").order("id"),
         ]);
         if (e1 || e2) throw e1 || e2;
